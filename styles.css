@@ -284,14 +284,13 @@ select:disabled {
   position: absolute;
   right: 16px;
   top: 14px;
-  width: 72px;
+  width: 100px;
 }
 
 .statue svg {
   width: 100%;
-  fill: #edf7ff;
-  stroke: var(--border);
-  stroke-width: 3;
+  height: auto;
+  display: block;
 }
 
 .sr-only {
@@ -311,6 +310,7 @@ select:disabled {
   }
 
   .statue {
-    opacity: 0.4;
+    width: 72px;
+    opacity: 0.9;
   }
 }
