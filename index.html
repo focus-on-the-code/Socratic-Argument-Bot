@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bot vs Bot: Social Media & Democracy</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="bg-shapes" aria-hidden="true">
+      <span class="shape squiggle s1"></span>
+      <span class="shape squiggle s2"></span>
+      <span class="shape circle c1"></span>
+      <span class="shape circle c2"></span>
+      <span class="shape triangle t1"></span>
+      <span class="shape blob b1"></span>
+    </div>
+
+    <header class="hero card">
+      <div class="statue" aria-hidden="true">
+        <svg viewBox="0 0 120 140" role="img">
+          <rect x="20" y="110" width="80" height="18" rx="6"></rect>
+          <ellipse cx="60" cy="42" rx="26" ry="24"></ellipse>
+          <rect x="38" y="62" width="44" height="44" rx="16"></rect>
+          <rect x="48" y="20" width="24" height="6" rx="3"></rect>
+        </svg>
+      </div>
+
+      <h1>Bot vs Bot: Social Media &amp; Democracy</h1>
+      <p class="instructions">
+        Pick a position, generate the dialogue, then click Next to reveal each step.
+      </p>
+
+      <div class="controls">
+        <label for="position" class="sr-only">Choose a position</label>
+        <select id="position" required>
+          <option value="" selected disabled>Choose a position...</option>
+          <option value="net-good">Social media is net-good for democracy</option>
+          <option value="net-bad">Social media is net-bad for democracy</option>
+          <option value="mixed">Social media has mixed benefits for democracy</option>
+          <option value="no-impact">Social media has no impact on democracy</option>
+        </select>
+        <button id="generateBtn" type="button">Generate Dialogue</button>
+      </div>
+
+      <p class="note">Please wait while the dialogue generates. Don’t refresh.</p>
+      <div id="loading" class="loading" hidden>
+        <span class="loader-dot" aria-hidden="true"></span>
+        <span>Summoning the bots from the digital bath...</span>
+      </div>
+    </header>
+
+    <main>
+      <div id="columns" class="columns" aria-live="polite">
+        <section class="column card" id="colA">
+          <h2>Bot A (Defends the resolution)</h2>
+          <div class="cards" id="botAOutput"></div>
+        </section>
+        <section class="column card" id="colB">
+          <h2>Bot B (Challenges / Steelmans the counter-position)</h2>
+          <div class="cards" id="botBOutput"></div>
+        </section>
+      </div>
+
+      <section id="fullWidthOutput" class="full-width-stack" aria-live="polite"></section>
+
+      <div class="actions">
+        <button id="nextBtn" type="button" hidden disabled>Next</button>
+      </div>
+    </main>
+
+    <template id="turnCardTemplate">
+      <article class="turn-card card">
+        <h3 class="turn-title"></h3>
+        <div class="mini-block">
+          <h4>Claim</h4>
+          <p class="claim"></p>
+        </div>
+        <div class="mini-block">
+          <h4>Reason</h4>
+          <p class="reason"></p>
+        </div>
+        <div class="mini-block">
+          <h4>Question</h4>
+          <p class="question"></p>
+        </div>
+      </article>
+    </template>
+
+    <script src="app.js"></script>
+  </body>
+</html>
