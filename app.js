@@ -1,6 +1,6 @@
 // GitHub Pages note: this app is fully static (index.html, styles.css, app.js) and can be hosted directly.
 
-const GEMINI_API_KEY = "AIzaSyBqc_CvHQhGJzgqP1RpRGqWihnlijs3VA4";
+const GEMINI_API_KEY = "AIzaSyDsXKRDShHzdMRtx6zVD-TVbl8vP2ZnrZ0";
 const MODEL = "gemini-2.5-flash";
 const THROTTLE_MS = 10000;
 
