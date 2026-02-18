@@ -1,6 +1,6 @@
 // GitHub Pages note: this app is fully static (index.html, styles.css, app.js) and can be hosted directly.
 
-const PROXY_URL = "https://gemini-key-socratic-argument-bot-1.tonyholtjr.workers.dev";
+const PROXY_URL = "https://gemini-key-socratic-argument-bot-2.tonyholtjr.workers.dev";
 const THROTTLE_MS = 10000;
 
 const positionSelect = document.getElementById("position");
