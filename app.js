@@ -8,9 +8,7 @@ const generateBtn = document.getElementById("generateBtn");
 const nextBtn = document.getElementById("nextBtn");
 const loadingEl = document.getElementById("loading");
 
-const botAOutput = document.getElementById("botAOutput");
-const botBOutput = document.getElementById("botBOutput");
-const fullWidthOutput = document.getElementById("fullWidthOutput");
+const stepOutput = document.getElementById("stepOutput");
 const turnCardTemplate = document.getElementById("turnCardTemplate");
 
 let steps = [];
@@ -34,9 +32,7 @@ function setLoadingState(isLoading) {
 }
 
 function clearOutputs() {
-  botAOutput.innerHTML = "";
-  botBOutput.innerHTML = "";
-  fullWidthOutput.innerHTML = "";
+  stepOutput.innerHTML = "";
 }
 
 function resetState({ keepSelection = false } = {}) {
@@ -61,6 +57,13 @@ function createFullCard(title, contentElement) {
   return card;
 }
 
+function appendFullStepRow(card) {
+  const row = document.createElement("section");
+  row.className = "step-row full-row";
+  row.appendChild(card);
+  stepOutput.appendChild(row);
+}
+
 function addErrorCard(message, rawText = "") {
   const wrap = document.createElement("div");
   const p = document.createElement("p");
@@ -77,7 +80,7 @@ function addErrorCard(message, rawText = "") {
     wrap.appendChild(details);
   }
 
-  fullWidthOutput.appendChild(createFullCard("Something went wrong", wrap));
+  appendFullStepRow(createFullCard("Something went wrong", wrap));
 }
 
 function renderTurn(turn) {
@@ -87,17 +90,30 @@ function renderTurn(turn) {
   node.querySelector(".claim").textContent = turn.claim;
   node.querySelector(".reason").textContent = turn.reason;
   node.querySelector(".question").textContent = turn.question;
+  return node;
+}
 
-  if (turn.speaker === "A") {
-    botAOutput.appendChild(node);
-  } else {
-    botBOutput.appendChild(node);
+function createTurnPairRow(turns) {
+  const row = document.createElement("section");
+  row.className = "step-row turn-pair-row";
+
+  const leftTurn = turns.find((turn) => turn.speaker === "A");
+  const rightTurn = turns.find((turn) => turn.speaker === "B");
+
+  if (leftTurn) {
+    row.appendChild(renderTurn(leftTurn));
   }
+
+  if (rightTurn) {
+    row.appendChild(renderTurn(rightTurn));
+  }
+
+  stepOutput.appendChild(row);
 }
 
 function renderStep(step) {
   if (step.type === "turnPair") {
-    step.turns.forEach(renderTurn);
+    createTurnPairRow(step.turns);
     return;
   }
 
@@ -118,7 +134,7 @@ function renderStep(step) {
     const assumptions = document.createElement("p");
     assumptions.innerHTML = `<strong>Assumptions:</strong> A: ${step.data.assumptions.A} | B: ${step.data.assumptions.B}`;
     content.appendChild(assumptions);
-    fullWidthOutput.appendChild(createFullCard("Check-in #1", content));
+    appendFullStepRow(createFullCard("Check-in #1", content));
     return;
   }
 
@@ -145,7 +161,7 @@ function renderStep(step) {
     q.innerHTML = `<strong>Remaining question:</strong> ${step.data.remaining_question}`;
     content.appendChild(q);
 
-    fullWidthOutput.appendChild(createFullCard("Final Synthesis", content));
+    appendFullStepRow(createFullCard("Final Synthesis", content));
     return;
   }
 
@@ -164,7 +180,7 @@ function renderStep(step) {
       grid.appendChild(item);
     });
     content.appendChild(grid);
-    fullWidthOutput.appendChild(createFullCard("Assessment", content));
+    appendFullStepRow(createFullCard("Assessment", content));
     return;
   }
 
@@ -177,7 +193,7 @@ function renderStep(step) {
       ol.appendChild(li);
     });
     content.appendChild(ol);
-    fullWidthOutput.appendChild(createFullCard("Tighten the Resolution", content));
+    appendFullStepRow(createFullCard("Tighten the Resolution", content));
     return;
   }
 
@@ -206,7 +222,7 @@ function renderStep(step) {
 
     const card = createFullCard("Done", content);
     card.classList.add("done-card");
-    fullWidthOutput.appendChild(card);
+    appendFullStepRow(card);
   }
 }
 
