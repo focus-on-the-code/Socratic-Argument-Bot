@@ -48,18 +48,18 @@
     </header>
 
     <main>
-      <div id="columns" class="columns" aria-live="polite">
-        <section class="column card" id="colA">
-          <h2>Bot A (Defends the resolution)</h2>
-          <div class="cards" id="botAOutput"></div>
-        </section>
-        <section class="column card" id="colB">
-          <h2>Bot B (Challenges / Steelmans the counter-position)</h2>
-          <div class="cards" id="botBOutput"></div>
-        </section>
-      </div>
+      <section id="dialogueTimeline" class="timeline" aria-live="polite">
+        <div class="turn-label-row" aria-hidden="true">
+          <section class="column card">
+            <h2>Bot A (Defends the resolution)</h2>
+          </section>
+          <section class="column card">
+            <h2>Bot B (Challenges / Steelmans the counter-position)</h2>
+          </section>
+        </div>
 
-      <section id="fullWidthOutput" class="full-width-stack" aria-live="polite"></section>
+        <div id="stepOutput" class="step-output"></div>
+      </section>
 
       <div class="actions">
         <button id="nextBtn" type="button" hidden disabled>Next</button>
