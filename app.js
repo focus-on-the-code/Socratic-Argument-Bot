@@ -1,7 +1,6 @@
 // GitHub Pages note: this app is fully static (index.html, styles.css, app.js) and can be hosted directly.
 
-const GEMINI_API_KEY = "AIzaSyDsXKRDShHzdMRtx6zVD-TVbl8vP2ZnrZ0";
-const MODEL = "gemini-2.5-flash";
+const PROXY_URL = "https://gemini-key-socratic-argument-bot-1.tonyholtjr.workers.dev";
 const THROTTLE_MS = 10000;
 
 const positionSelect = document.getElementById("position");
@@ -402,9 +401,7 @@ async function onGenerateDialogue() {
   let rawModelText = "";
 
   try {
-    const response = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent?key=${GEMINI_API_KEY}`,
-      {
+    const response = await fetch(PROXY_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
