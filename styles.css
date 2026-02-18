@@ -318,11 +318,15 @@ select:disabled {
   }
 
   .hero {
-    padding-right: 1.2rem;
+    padding: 1.2rem;
   }
 
   .statue {
-    width: 130px;
+    position: static;
+    right: auto;
+    top: auto;
+    width: min(52vw, 190px);
+    margin: 0 auto 0.75rem;
     opacity: 0.9;
   }
 }
