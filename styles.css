@@ -40,7 +40,7 @@ main,
 }
 
 .hero {
-  padding: 1.2rem;
+  padding: 1.2rem 260px 1.2rem 1.2rem;
   position: relative;
 }
 
@@ -291,7 +291,7 @@ select:disabled {
   position: absolute;
   right: 16px;
   top: 14px;
-  width: 100px;
+  width: 220px;
 }
 
 .statue svg {
@@ -317,8 +317,12 @@ select:disabled {
     grid-template-columns: 1fr;
   }
 
+  .hero {
+    padding-right: 1.2rem;
+  }
+
   .statue {
-    width: 72px;
+    width: 130px;
     opacity: 0.9;
   }
 }
