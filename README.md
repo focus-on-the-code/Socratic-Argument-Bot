@@ -13,5 +13,3 @@ An interactive web app where two AI bots engage in disciplined dialogue on wheth
 ## Tech Stack
 
 JavaScript (64.6%) | CSS (20.9%) | HTML (14.5%)
-
-## Quick Start
