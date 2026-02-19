@@ -1,0 +1,12 @@
+# Local development secrets for Cloudflare Worker.
+# Copy this file to `.dev.vars` and fill in real values.
+# `.dev.vars` should never be committed.
+
+# Gemini key used by the Worker when proxying requests server-side.
+GEMINI_API_KEY=PASTE_GEMINI_API_KEY_HERE
+
+# Optional: restrict browser calls to your deployed frontend origin.
+# Examples:
+# https://focus-on-the-code.github.io
+# https://focus-on-the-code.github.io/Socratic-Argument-Bot
+ALLOWED_ORIGIN=https://your-github-pages-origin.example
