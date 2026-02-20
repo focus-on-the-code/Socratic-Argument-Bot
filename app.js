@@ -1,6 +1,7 @@
 // GitHub Pages note: this app is fully static (index.html, styles.css, app.js) and can be hosted directly.
 
-const PROXY_URL = "https://gemini-key-socratic-argument-bot-2.tonyholtjr.workers.dev";
+const PROXY_URL = "https://gemini-key-socratic-argument-bot-v2.tonyholtjr.workers.dev";
+const APP_TOKEN = "Socratic_Auth_2026_Secure_!99";
 const THROTTLE_MS = 10000;
 
 const positionSelect = document.getElementById("position");
@@ -418,21 +419,23 @@ async function onGenerateDialogue() {
 
   try {
     const response = await fetch(PROXY_URL, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          contents: [
-            {
-              role: "user",
-              parts: [{ text: prompt }]
-            }
-          ],
-          generationConfig: {
-            temperature: 0.7
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-App-Token": APP_TOKEN
+      },
+      body: JSON.stringify({
+        contents: [
+          {
+            role: "user",
+            parts: [{ text: prompt }]
           }
-        })
-      }
-    );
+        ],
+        generationConfig: {
+          temperature: 0.7
+        }
+      })
+    });
 
     const data = await response.json();
     rawModelText = data?.candidates?.[0]?.content?.parts?.[0]?.text || "";
